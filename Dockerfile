@@ -1,6 +1,6 @@
 # Apache Kafka
 
-FROM digitalwonderland/base:latest
+FROM digitalwonderland/oracle-jre-8:latest
 
 ENV KAFKA_HOME /opt/kafka
 
@@ -8,7 +8,7 @@ ADD ./src /
 
 RUN chmod +x /usr/local/sbin/start.sh
 
-RUN yum install -y java-1.7.0-openjdk-headless tar && yum clean all
+RUN yum install -y tar && yum clean all
 
 RUN curl -sS http://mirrors.koehn.com/apache/kafka/0.8.1.1/kafka_2.10-0.8.1.1.tgz  | tar -xzf - -C /tmp \
   && mv /tmp/kafka_* $KAFKA_HOME \
