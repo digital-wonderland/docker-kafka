@@ -30,4 +30,4 @@ EXPOSE 9092
 
 VOLUME ["/var/lib/kafka"]
 
-#ENTRYPOINT ["/usr/local/sbin/start.sh"]
+ENTRYPOINT ["/usr/local/sbin/start.sh"]
