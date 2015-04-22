@@ -46,5 +46,6 @@ done
 
 # Logging config
 sed -i "s/^kafka\.logs\.dir=.*$/kafka\.logs\.dir=\/var\/log\/kafka/" /opt/kafka/config/log4j.properties
+export LOG_DIR=/var/log/kafka
 
 su kafka -s /bin/bash -c "cd /opt/kafka && bin/kafka-server-start.sh config/server.properties"
