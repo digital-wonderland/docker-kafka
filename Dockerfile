@@ -10,7 +10,7 @@ RUN chmod +x /usr/local/sbin/start.sh
 
 RUN rpm --rebuilddb && yum install -y tar && yum clean all
 
-RUN curl -sS http://mirrors.koehn.com/apache/kafka/0.8.2.1/kafka_2.10-0.8.2.1.tgz  | tar -xzf - -C /tmp \
+RUN curl -sS http://mirrors.koehn.com/apache/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz  | tar -xzf - -C /tmp \
   && mv /tmp/kafka_* $KAFKA_HOME \
   && chown -R root:root $KAFKA_HOME
 
