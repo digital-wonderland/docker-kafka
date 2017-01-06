@@ -2,7 +2,7 @@
 
 FROM digitalwonderland/oracle-jre-8:latest
 
-ARG KAFKA_VERSION=0.8.2.2
+ARG KAFKA_VERSION=0.10.1.1
 ARG KAFKA_MIRROR=http://www-eu.apache.org
 ARG KAFKA_SCALA_VERSION=2.11
 
