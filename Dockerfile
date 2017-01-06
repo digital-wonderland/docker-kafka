@@ -26,6 +26,6 @@ RUN addgroup -S kafka \
 
 EXPOSE 9092
 
-VOLUME ["/var/lib/kafka"]
+VOLUME ["/var/lib/kafka", "/var/log/kafka"]
 
 ENTRYPOINT ["/usr/local/sbin/start.sh"]
