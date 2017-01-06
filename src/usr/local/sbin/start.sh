@@ -37,7 +37,7 @@ do
     KAFKA_ENV_VAR=`echo "$VAR" | sed -r "s/(.*)=.*/\1/g"`
 
     if egrep -q "(^|^#)$KAFKA_CONFIG_VAR" $KAFKA_HOME/config/server.properties; then
-      sed -r -i "s\\(^|^#)$KAFKA_CONFIG_VAR=.*$\\$KAFKA_CONFIG_VAR=${!KAFKA_ENV_VAR}\\g" $KAFKA_HOME/config/server.properties
+      sed -r -i "s (^|^#)$KAFKA_CONFIG_VAR=.*$ $KAFKA_CONFIG_VAR=${!KAFKA_ENV_VAR} g" $KAFKA_HOME/config/server.properties
     else
       echo "$KAFKA_CONFIG_VAR=${!KAFKA_ENV_VAR}" >> $KAFKA_HOME/config/server.properties
     fi
