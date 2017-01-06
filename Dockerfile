@@ -2,6 +2,10 @@
 
 FROM digitalwonderland/oracle-jre-8:latest
 
+ARG KAFKA_VERSION=0.8.2.2
+ARG KAFKA_MIRROR=http://www-eu.apache.org
+ARG KAFKA_SCALA_VERSION=2.11
+
 ENV KAFKA_HOME /opt/kafka
 
 ADD ./src /
@@ -10,7 +14,7 @@ RUN chmod +x /usr/local/sbin/start.sh
 
 RUN rpm --rebuilddb && yum install -y tar && yum clean all
 
-RUN curl -sS http://mirrors.koehn.com/apache/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz  | tar -xzf - -C /tmp \
+RUN curl -sS ${KAFKA_MIRROR}/dist//kafka/${KAFKA_VERSION}/kafka_${KAFKA_SCALA_VERSION}-${KAFKA_VERSION}.tgz  | tar -xzf - -C /tmp \
   && mv /tmp/kafka_* $KAFKA_HOME \
   && chown -R root:root $KAFKA_HOME
 
