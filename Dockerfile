@@ -6,6 +6,8 @@ ARG KAFKA_VERSION=0.10.1.1
 ARG KAFKA_MIRROR=http://www-eu.apache.org
 ARG KAFKA_SCALA_VERSION=2.11
 
+LABEL name="kafka" version=${KAFKA_VERSION}
+
 ENV KAFKA_HOME /opt/kafka
 
 ADD ./src /
