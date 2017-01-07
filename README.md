@@ -1,12 +1,14 @@
-## About:
+[![Docker Stars](https://img.shields.io/docker/stars/digitalwonderland/kafka.svg)](https://hub.docker.com/r/digitalwonderland/kafka/) [![Docker Pulls](https://img.shields.io/docker/pulls/digitalwonderland/kafka.svg)](https://hub.docker.com/r/digitalwonderland/kafka/) [![](https://images.microbadger.com/badges/image/digitalwonderland/kafka.svg)](https://microbadger.com/images/digitalwonderland/kafka)
+
+# About:
 
 [Docker](http://www.docker.com/) image based on [openjdk:8-jre-alpine](https://github.com/docker-library/openjdk/blob/master/8-jre/alpine/Dockerfile)
 
-## Additional Software:
+# Additional Software:
 
 * [Apache Kafka](http://kafka.apache.org/)
 
-## Usage:
+# Usage:
 
 The image provides a clusterable Kafka broker.
 
