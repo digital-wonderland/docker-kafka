@@ -2,9 +2,9 @@
 
 FROM openjdk:8-jre-alpine
 
-ARG KAFKA_VERSION=0.10.1.1
+ARG KAFKA_VERSION=0.10.2.1
 ARG KAFKA_MIRROR=http://www-eu.apache.org
-ARG KAFKA_SCALA_VERSION=2.11
+ARG KAFKA_SCALA_VERSION=2.12
 
 LABEL name="kafka" version=${KAFKA_VERSION}
 
