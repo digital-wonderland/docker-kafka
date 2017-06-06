@@ -3,6 +3,18 @@
 # Fail hard and fast
 set -eo pipefail
 
+# Evaluate commands
+for VAR in $(env)
+do
+  if [[ $VAR =~ ^KAFKA_.*_COMMAND= ]]; then
+    VAR_NAME=${VAR%%=*}
+    EVALUATED_VALUE=$(eval ${!VAR_NAME})
+    export ${VAR_NAME%_COMMAND}=${EVALUATED_VALUE}
+    echo "${VAR} -> ${VAR_NAME%_COMMAND}=${EVALUATED_VALUE}"
+  fi
+done
+
+# Check mandatory parameters
 if [ -z "$KAFKA_BROKER_ID" ]; then
   echo "\$KAFKA_BROKER_ID not set"
   exit 1
@@ -33,8 +45,8 @@ export KAFKA_LOG_DIRS=${KAFKA_LOG_DIRS:-/var/lib/kafka}
 for VAR in `env`
 do
   if [[ $VAR =~ ^KAFKA_ && ! $VAR =~ ^KAFKA_HOME ]]; then
-    KAFKA_CONFIG_VAR=`echo "$VAR" | sed -r "s/KAFKA_(.*)=.*/\1/g" | tr '[:upper:]' '[:lower:]' | tr _ .`
-    KAFKA_ENV_VAR=`echo "$VAR" | sed -r "s/(.*)=.*/\1/g"`
+    KAFKA_CONFIG_VAR=$(echo "$VAR" | sed -r "s/KAFKA_(.*)=.*/\1/g" | tr '[:upper:]' '[:lower:]' | tr _ .)
+    KAFKA_ENV_VAR=${VAR%%=*}
 
     if egrep -q "(^|^#)$KAFKA_CONFIG_VAR" $KAFKA_HOME/config/server.properties; then
       sed -r -i "s (^|^#)$KAFKA_CONFIG_VAR=.*$ $KAFKA_CONFIG_VAR=${!KAFKA_ENV_VAR} g" $KAFKA_HOME/config/server.properties
