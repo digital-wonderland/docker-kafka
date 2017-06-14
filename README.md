@@ -26,12 +26,18 @@ docker run -d -e KAFKA_BROKER_ID=1 -e KAFKA_ADVERTISED_HOST_NAME=172.17.8.101 -e
 
 (if you are looking for a clusterable Zookeeper Docker image, feel free to use [digitalwonderland/zookeeper](https://github.com/digital-wonderland/docker-zookeeper))
 
-### Additional configuration
+### Additional Configuration
 
-can be provided via environment variables starting with ```KAFKA_```. Any matching variables will get added to Kafkas ```server.properties``` by
+Configuration parameters can be provided via environment variables starting with ```KAFKA_```. Any matching variable will be added to Kafkas ```server.properties``` by
 
 1. removing the ```KAFKA_``` prefix
 2. transformation to lower case
 3. replacing any occurences of ```_``` with ```.```
 
 For example an environment variable ```KAFKA_NUM_PARTITIONS=3``` will result in ```num.partitions=3``` within ```server.properties```.
+
+### Evaluated Parameters
+
+Any environment variable starting with ```KAFKA_``` and ending with ```_COMMAND``` will be first evaluated and the result saved in an environment variable without the trailing ```_COMMAND```.
+
+For example an environment variable ```KAFKA_ADVERTISED_HOST_NAME_COMMAND=hostname``` will export ```KAFKA_ADVERTISED_HOST_NAME``` with the value obtained by running ```hostname``` command inside the container.
