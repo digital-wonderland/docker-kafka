@@ -41,6 +41,8 @@ fi
 
 export KAFKA_LOG_DIRS=${KAFKA_LOG_DIRS:-/var/lib/kafka}
 
+echo "" >> $KAFKA_HOME/config/server.properties
+
 # General config
 for VAR in `env`
 do
